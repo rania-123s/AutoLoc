@@ -40,3 +40,12 @@ Voir le guide de mise en place de l'environnement (Atelier 0) pour le détail : 
 ## Environnement de développement
 
 L'environnement de développement (JDK 17, IntelliJ IDEA Ultimate, MySQL, Postman, Git) a été mis en place suivant le guide de l'Atelier 0. Voir capture d'écran jointe au dépôt.
+
+## Atelier 1 — Entités JPA
+
+Le dépôt contient deux dossiers :
+
+- `raniaselmi_4cce10/` : projet Spring Boot de l'Atelier 1 (entité `Vehicule` et 8 autres entités sans associations, 5 énumérations), à évaluer.
+- `autoloc-api/` : première version du projet, conservée pour l'historique.
+
+Les 9 tables générées dans `autoloc_db` (phpMyAdmin) : voir `docs/atelier1-tables-phpmyadmin.png`.
