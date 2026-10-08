@@ -3,7 +3,7 @@ package tn.esprit.raniaselmi_4cce10.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.raniaselmi_4cce10.domain.Vehicule;
-import tn.esprit.raniaselmi_4cce10.repository.VehiculeRepository;
+import tn.esprit.raniaselmi_4cce10.repository.IVehiculeRepository;
 import tn.esprit.raniaselmi_4cce10.service.VehiculeService;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class VehiculeServiceImpl implements VehiculeService {
 
-    private final VehiculeRepository vehiculeRepository;
+    private final IVehiculeRepository vehiculeRepository;
 
     @Override
     public List<Vehicule> findAll() {
