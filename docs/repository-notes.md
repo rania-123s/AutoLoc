@@ -23,10 +23,10 @@ donc la cascade et l'`orphanRemoval` ne s'appliquent pas (risque de paiements or
 
 ## Anomalies SonarQube for IDE
 
-À compléter après l'analyse du projet dans IntelliJ (clic droit sur le projet → *Analyze with SonarQube for IDE*).
+Anomalies relevées par relecture du code selon les règles de SonarQube for IDE, puis corrigées.
 
 | Anomalie | Règle / explication | Correction apportée |
 |---|---|---|
-| à compléter | à compléter | à compléter |
-| à compléter | à compléter | à compléter |
-| à compléter | à compléter | à compléter |
+| `import jakarta.persistence.*;` dans 9 entités (Agence, Client, Contrat, Employe, Equipement, Maintenance, Paiement, Reservation, Vehicule) | java:S2208 — les imports avec joker sont à éviter : on ne voit pas quelles classes sont réellement utilisées et deux packages peuvent entrer en conflit. | Remplacés par des imports explicites (`jakarta.persistence.Entity`, `Id`, `Column`, …). |
+| Lignes vides en double dans `Client.java` et `Vehicule.java` | Mauvaise lisibilité / code non conforme au formatage standard (Clean Code). | Lignes vides superflues supprimées. |
+| Espace en fin de ligne après `@Service` dans `VehiculeServiceImpl.java` | Espace superflu en fin de ligne (formatage, Clean Code). | Espace supprimé. |
