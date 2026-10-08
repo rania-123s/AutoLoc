@@ -23,7 +23,8 @@ donc la cascade et l'`orphanRemoval` ne s'appliquent pas (risque de paiements or
 
 ## Anomalies SonarQube for IDE
 
-Anomalies relevées par relecture du code selon les règles de SonarQube for IDE, puis corrigées.
+Anomalies relevées par relecture du code selon les règles de SonarQube for IDE (plugin 12.9), puis corrigées.
+Analyse du dossier `src` après corrections (rapport du 08/10 à 22:41) : **No issues**, **No Security Hotspots**, **No Taint Vulnerabilities**.
 
 | Anomalie | Règle / explication | Correction apportée |
 |---|---|---|
