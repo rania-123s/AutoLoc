@@ -1,16 +1,15 @@
 package tn.esprit.raniaselmi_4cce10.service;
 
+import java.util.List;
 import tn.esprit.raniaselmi_4cce10.domain.Vehicule;
 
-import java.util.List;
+public interface IVehiculeService {
 
-public interface VehiculeService {
-
-    List<Vehicule> findAll();
+    Vehicule create(Vehicule vehicule);
 
     Vehicule findById(Long id);
 
-    Vehicule save(Vehicule vehicule);
+    List<Vehicule> findAll();
 
     Vehicule update(Long id, Vehicule vehicule);
 
