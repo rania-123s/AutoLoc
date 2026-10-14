@@ -16,7 +16,7 @@ import tn.esprit.raniaselmi_4cce10.domain.Vehicule;
 import tn.esprit.raniaselmi_4cce10.service.IVehiculeService;
 
 @RestController
-@RequestMapping("/api/vehicules")
+@RequestMapping("/vehicules")
 @RequiredArgsConstructor
 public class VehiculeRestController {
 
@@ -29,12 +29,12 @@ public class VehiculeRestController {
     }
 
     @GetMapping("/{id}")
-    public Vehicule findById(@PathVariable Long id) {
+    public Vehicule getVehicules(@PathVariable Long id) {
         return vehiculeService.findById(id);
     }
 
     @GetMapping
-    public List<Vehicule> findAll() {
+    public List<Vehicule> getVehicules () {
         return vehiculeService.findAll();
     }
 
