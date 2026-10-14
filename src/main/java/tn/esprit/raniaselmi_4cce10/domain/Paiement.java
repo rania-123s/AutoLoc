@@ -1,5 +1,6 @@
 package tn.esprit.raniaselmi_4cce10.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -43,5 +44,6 @@ public class Paiement {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_contrat", nullable = false)
+    @JsonBackReference("contrat-paiements")
     private Contrat contrat;
 }
