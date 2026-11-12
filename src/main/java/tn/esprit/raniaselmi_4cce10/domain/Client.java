@@ -43,6 +43,9 @@ public class Client {
     @Column(length = 20)
     private String telephone;
 
+    @Column(nullable = false, length = 20)
+    private String type = "PARTICULIER"; // PARTICULIER, ENTREPRISE ou VIP
+
     @Column(nullable = false, unique = true, length = 30)
     private String numPermis;
 
