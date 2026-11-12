@@ -1,5 +1,6 @@
 package tn.esprit.raniaselmi_4cce10.domain;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -58,7 +59,7 @@ public class Vehicule {
     @JoinColumn(name = "id_agence", nullable = false)
     private Agence agence;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "vehicule_equipement",
             joinColumns = @JoinColumn(name = "id_vehicule"),
             inverseJoinColumns = @JoinColumn(name = "id_equipement"))

@@ -36,6 +36,15 @@ public class ContratRestController {
         return contratService.create(contrat);
     }
 
+    @Operation(summary = "Créer un contrat avec ses paiements")
+    @ApiResponse(responseCode = "201", description = "Contrat et paiements créés")
+    @ApiResponse(responseCode = "400", description = "Données invalides")
+    @PostMapping("/with-payments")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Contrat addWithPayments(@RequestBody Contrat contrat) {
+        return contratService.addWithPayments(contrat);
+    }
+
     @Operation(summary = "Consulter un contrat")
     @ApiResponse(responseCode = "200", description = "Contrat trouvé")
     @ApiResponse(responseCode = "404", description = "Contrat introuvable")

@@ -69,4 +69,46 @@ public class VehiculeRestController {
     public void deleteById(@Parameter(description = "Identifiant") @PathVariable Long id) {
         vehiculeService.deleteById(id);
     }
+
+    @Operation(summary = "Affecter un vehicule à une agence")
+    @ApiResponse(responseCode = "200", description = "Vehicule affecté à l'agence")
+    @ApiResponse(responseCode = "404", description = "Vehicule ou agence introuvable")
+    @PutMapping("/{idVehicule}/agence/{idAgence}")
+    public Vehicule assignAgence(
+            @Parameter(description = "Identifiant du vehicule") @PathVariable Long idVehicule,
+            @Parameter(description = "Identifiant de l'agence") @PathVariable Long idAgence) {
+        return vehiculeService.assignAgence(idVehicule, idAgence);
+    }
+
+    @Operation(summary = "Créer un vehicule avec ses equipements et l'affecter à une agence")
+    @ApiResponse(responseCode = "201", description = "Vehicule créé et affecté à l'agence")
+    @ApiResponse(responseCode = "400", description = "Données invalides")
+    @ApiResponse(responseCode = "404", description = "Agence introuvable")
+    @PostMapping("/agence/{idAgence}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Vehicule addAndAssignAgence(@RequestBody Vehicule vehicule,
+            @Parameter(description = "Identifiant de l'agence") @PathVariable Long idAgence) {
+        return vehiculeService.addAndAssignAgence(vehicule, idAgence);
+    }
+
+    @Operation(summary = "Affecter un equipement à un vehicule")
+    @ApiResponse(responseCode = "200", description = "Equipement affecté au vehicule")
+    @ApiResponse(responseCode = "404", description = "Vehicule ou equipement introuvable")
+    @PutMapping("/{idVehicule}/equipements/{idEquipement}")
+    public Vehicule assignEquipement(
+            @Parameter(description = "Identifiant du vehicule") @PathVariable Long idVehicule,
+            @Parameter(description = "Identifiant de l'equipement") @PathVariable Long idEquipement) {
+        return vehiculeService.assignEquipement(idVehicule, idEquipement);
+    }
+
+    @Operation(summary = "Retirer un equipement d'un vehicule")
+    @ApiResponse(responseCode = "204", description = "Equipement retiré du vehicule")
+    @ApiResponse(responseCode = "404", description = "Vehicule ou equipement introuvable")
+    @DeleteMapping("/{idVehicule}/equipements/{idEquipement}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void unassignEquipement(
+            @Parameter(description = "Identifiant du vehicule") @PathVariable Long idVehicule,
+            @Parameter(description = "Identifiant de l'equipement") @PathVariable Long idEquipement) {
+        vehiculeService.unassignEquipement(idVehicule, idEquipement);
+    }
 }

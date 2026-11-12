@@ -14,4 +14,12 @@ public interface IVehiculeService {
     Vehicule update(Long id, Vehicule vehicule);
 
     void deleteById(Long id);
+
+    Vehicule assignAgence(Long idVehicule, Long idAgence);
+
+    Vehicule addAndAssignAgence(Vehicule vehicule, Long idAgence);
+
+    Vehicule assignEquipement(Long idVehicule, Long idEquipement);
+
+    void unassignEquipement(Long idVehicule, Long idEquipement);
 }

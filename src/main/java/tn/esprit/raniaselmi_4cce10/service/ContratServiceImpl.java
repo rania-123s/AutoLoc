@@ -53,6 +53,21 @@ public class ContratServiceImpl implements IContratService {
         contratRepository.deleteById(id);
     }
 
+    @Override
+    public Contrat addWithPayments(Contrat c) {
+        if (c.getIdContrat() != null) {
+            throw new IllegalArgumentException(
+                    "Un nouveau contrat ne doit pas avoir d'identifiant");
+        }
+        valider(c);
+        if (c.getPaiements() != null) {
+            // chaque paiement doit pointer vers son contrat (cote proprietaire de la relation)
+            c.getPaiements().forEach(p -> p.setContrat(c));
+        }
+        // les paiements sont enregistres en cascade (CascadeType.ALL sur Contrat.paiements)
+        return contratRepository.save(c);
+    }
+
     private static void valider(Contrat e) {
         if (e.getMontantTotal() != null && e.getMontantTotal().signum() < 0) {
             throw new IllegalArgumentException("Le montant total ne peut pas être négatif");
