@@ -12,6 +12,7 @@ import tn.esprit.raniaselmi_4cce10.repository.IAgenceRepository;
 import tn.esprit.raniaselmi_4cce10.repository.IEquipementRepository;
 import tn.esprit.raniaselmi_4cce10.repository.IVehiculeRepository;
 import tn.esprit.raniaselmi_4cce10.web.dto.VehiculeDTO;
+import tn.esprit.raniaselmi_4cce10.web.mapper.VehiculeMapper;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +21,7 @@ public class VehiculeServiceImpl implements IVehiculeService {
     private final IVehiculeRepository vehiculeRepository;
     private final IAgenceRepository agenceRepository;
     private final IEquipementRepository equipementRepository;
+    private final VehiculeMapper vehiculeMapper;
 
     @Override
     public Vehicule create(Vehicule vehicule) {
@@ -48,14 +50,7 @@ public class VehiculeServiceImpl implements IVehiculeService {
 
     @Override
     public VehiculeDTO toDTO(Vehicule vehicule) {
-        String nomAgence = vehicule.getAgence() != null ? vehicule.getAgence().getNom() : null;
-        return new VehiculeDTO(
-                vehicule.getImmatriculation(),
-                vehicule.getMarque(),
-                vehicule.getModele(),
-                vehicule.getCategorie(),
-                vehicule.getTarifJournalier(),
-                nomAgence);
+        return vehiculeMapper.toDto(vehicule);
     }
 
     @Override
