@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import tn.esprit.raniaselmi_4cce10.domain.Vehicule;
 import tn.esprit.raniaselmi_4cce10.service.IVehiculeService;
+import tn.esprit.raniaselmi_4cce10.web.dto.VehiculeDTO;
 
 @RestController
 @RequestMapping("/vehicules")
@@ -47,7 +48,7 @@ public class VehiculeRestController {
     @Operation(summary = "Lister les vehicules")
     @ApiResponse(responseCode = "200", description = "Liste des vehicules")
     @GetMapping
-    public List<Vehicule> findAll() {
+    public List<VehiculeDTO> findAll() {
         return vehiculeService.findAll();
     }
 

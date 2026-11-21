@@ -1,5 +1,6 @@
 package tn.esprit.raniaselmi_4cce10.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import tn.esprit.raniaselmi_4cce10.exception.ResourceNotFoundException;
 import tn.esprit.raniaselmi_4cce10.repository.IAgenceRepository;
 import tn.esprit.raniaselmi_4cce10.repository.IEquipementRepository;
 import tn.esprit.raniaselmi_4cce10.repository.IVehiculeRepository;
+import tn.esprit.raniaselmi_4cce10.web.dto.VehiculeDTO;
 
 @Service
 @RequiredArgsConstructor
@@ -36,8 +38,24 @@ public class VehiculeServiceImpl implements IVehiculeService {
     }
 
     @Override
-    public List<Vehicule> findAll() {
-        return vehiculeRepository.findAll();
+    public List<VehiculeDTO> findAll() {
+        List<VehiculeDTO> vehiculeDTOs = new ArrayList<>();
+        for (Vehicule vehicule : vehiculeRepository.findAll()) {
+            vehiculeDTOs.add(toDTO(vehicule));
+        }
+        return vehiculeDTOs;
+    }
+
+    @Override
+    public VehiculeDTO toDTO(Vehicule vehicule) {
+        String nomAgence = vehicule.getAgence() != null ? vehicule.getAgence().getNom() : null;
+        return new VehiculeDTO(
+                vehicule.getImmatriculation(),
+                vehicule.getMarque(),
+                vehicule.getModele(),
+                vehicule.getCategorie(),
+                vehicule.getTarifJournalier(),
+                nomAgence);
     }
 
     @Override
