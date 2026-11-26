@@ -53,6 +53,20 @@ public class AgenceServiceImpl implements IAgenceService {
         agenceRepository.deleteById(id);
     }
 
+    @Override
+    public Agence getByNom(String nom) {
+        Agence agence = agenceRepository.findByNom(nom);
+        if (agence == null) {
+            throw new IllegalArgumentException("Aucune agence avec le nom " + nom);
+        }
+        return agence;
+    }
+
+    @Override
+    public List<Agence> getByVilleAndAdresse(String ville, String adresse) {
+        return agenceRepository.findByVilleContainingIgnoreCaseAndAdresse(ville, adresse);
+    }
+
     private static void valider(Agence e) {
         requireText(e.getNom(), "Le nom de l'agence est obligatoire");
     }

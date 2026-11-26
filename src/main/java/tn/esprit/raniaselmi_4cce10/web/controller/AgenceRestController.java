@@ -69,4 +69,17 @@ public class AgenceRestController {
     public void deleteById(@Parameter(description = "Identifiant") @PathVariable Long id) {
         agenceService.deleteById(id);
     }
+
+    @Operation(summary = "Recherche par nom")
+    @GetMapping("/nom/{nom}")
+    public Agence getByNom(@PathVariable String nom) {
+        return agenceService.getByNom(nom);
+    }
+
+    @Operation(summary = "Recherche par ville et adresse")
+    @GetMapping("/ville/{ville}/adresse/{adresse}")
+    public List<Agence> getByVilleAndAdresse(@PathVariable String ville,
+            @PathVariable String adresse) {
+        return agenceService.getByVilleAndAdresse(ville, adresse);
+    }
 }

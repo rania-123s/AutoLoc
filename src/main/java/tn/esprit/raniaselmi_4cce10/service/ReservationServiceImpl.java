@@ -1,6 +1,7 @@
 package tn.esprit.raniaselmi_4cce10.service;
 
 import java.util.List;
+import java.time.LocalDate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.raniaselmi_4cce10.domain.Reservation;
@@ -61,5 +62,15 @@ public class ReservationServiceImpl implements IReservationService {
         if (e.getDateFin().isBefore(e.getDateDebut())) {
             throw new IllegalArgumentException("La date de fin ne peut pas être antérieure à la date de début");
         }
+    }
+
+    @Override
+    public List<Reservation> getByClientEmail(String email) {
+        return reservationRepository.findByClientEmail(email);
+    }
+
+    @Override
+    public List<Reservation> getByDateDebutBetween(LocalDate d1, LocalDate d2) {
+        return reservationRepository.findByDateDebutBetween(d1, d2);
     }
 }

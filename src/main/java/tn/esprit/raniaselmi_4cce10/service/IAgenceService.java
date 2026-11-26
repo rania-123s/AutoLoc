@@ -14,4 +14,8 @@ public interface IAgenceService {
     Agence update(Long id, Agence agence);
 
     void deleteById(Long id);
+
+    Agence getByNom(String nom);
+
+    List<Agence> getByVilleAndAdresse(String ville, String adresse);
 }

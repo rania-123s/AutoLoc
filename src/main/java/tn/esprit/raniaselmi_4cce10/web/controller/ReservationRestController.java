@@ -5,7 +5,10 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
+import java.time.LocalDate;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -68,5 +71,19 @@ public class ReservationRestController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@Parameter(description = "Identifiant") @PathVariable Long id) {
         reservationService.deleteById(id);
+    }
+
+    @Operation(summary = "Recherche des réservations par email du client")
+    @GetMapping("/client/{email}")
+    public List<Reservation> getByClientEmail(@PathVariable String email) {
+        return reservationService.getByClientEmail(email);
+    }
+
+    @Operation(summary = "Réservations dont la date de début est entre d1 et d2")
+    @GetMapping("/date-debut")
+    public List<Reservation> getByDateDebutBetween(
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate d1,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate d2) {
+        return reservationService.getByDateDebutBetween(d1, d2);
     }
 }

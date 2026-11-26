@@ -1,6 +1,7 @@
 package tn.esprit.raniaselmi_4cce10.service;
 
 import java.util.List;
+import java.time.LocalDate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.raniaselmi_4cce10.domain.Client;
@@ -64,5 +65,10 @@ public class ClientServiceImpl implements IClientService {
         if (valeur == null || valeur.isBlank()) {
             throw new IllegalArgumentException(message);
         }
+    }
+
+    @Override
+    public List<Client> getByDateDebutReservationBetween(LocalDate d1, LocalDate d2) {
+        return clientRepository.findByReservations(d1, d2);
     }
 }
